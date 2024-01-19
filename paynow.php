@@ -26,8 +26,12 @@
 
  function my_sc_fun() {
     ob_start();
-    
-    $template_path = './src/template/template.donate.php';
+
+    $plugin_dir = plugin_dir_path(__FILE__);
+    $template_path = $plugin_dir . 'src/template/donate.php';
+
+    // Debugging: Print the file path
+    //echo 'Template Path: ' . $template_path . '<br>';
 
     if (file_exists($template_path)) {
         include $template_path;
@@ -41,3 +45,4 @@
 
 
  add_shortcode('my-sc', 'my_sc_fun');
+ 
