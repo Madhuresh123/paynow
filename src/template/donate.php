@@ -6,47 +6,11 @@
   <link rel="stylesheet" href="../style/donate.css">
   <title>Donate Now</title>
 
-  <style>
-    body {
-    font-family: Arial, sans-serif;
-  }
-  .popup {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    background: #fff;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    z-index: 1001;
-  }
-  .overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 10rem;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1000;
-  }
-  .form-group {
-    margin-bottom: 15px;
-  }
-  .close-btn {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    cursor: pointer;
-  }  
-
-  </style>
 </head>
 <body>
 
   <!-- Donate Now Button -->
-  <button onclick="openPopup()">Donate Now</button>
+  <button class="donate_btn" onclick="openPopup()">Donate Now</button>
 
   <!-- Popup Overlay -->
   <div class="overlay" id="overlay"></div>
@@ -54,46 +18,53 @@
   <!-- Donation Form Popup -->
   <div class="popup" id="popup">
     <span class="close-btn" onclick="closePopup()">X</span>
-    <h2>Donation Form</h2>
+    <h2>Personal Info</h2>
     <form>
+      
       <div class="form-group">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
+        <label for="name">Full Name<span class="required-symbol">*</span></label><br>
+        <input class="donor-input" type="text" id="name" name="name" placeholder="Full Name" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
       </div>
       <div class="form-group">
-        <label for="pan">PAN Number:</label>
-        <input type="text" id="pan" name="pan" required>
+        <label for="pan">PAN Number<span class="required-symbol">*</span></label><br>
+        <input  class="donor-input" type="text" id="pan" name="pan"  placeholder="PAN Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)"  required>
       </div>
       <div class="form-group">
-        <label for="email">Email Address:</label>
-        <input type="email" id="email" name="email" required>
+        <label for="email">Email Address<span class="required-symbol">*</span></label><br>
+        <input  class="donor-input" type="email" id="email" name="email" placeholder="Email Address" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)"  required>
       </div>
       <div class="form-group">
-        <label for="contact">Contact Number:</label>
-        <input type="tel" id="contact" name="contact" required>
+        <label for="contact">Contact Number<span class="required-symbol">*</span></label><br>
+        <input class="donor-input"  type="tel" id="contact" name="contact"  placeholder="Contact Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
       </div>
+
+      <div>
+      <p>To make an offline donation toward this cause, follow these steps:</p>
+
+<ol>
+    <li>Write a check payable to "RGT Welfare Foundation"</li>
+    <li>On the memo line of the check, indicate that the donation is for "RGT Welfare Foundation"</li>
+    <li>Mail your check to:</li>
+</ol>
+
+<address>
+    RGT Welfare Foundation<br>
+    Noida, India<br>
+    Electronic City<br>
+    Ground Floor, Pinnacle Tower,<br>
+    A-42/6 Sector 62 Noida (UP) 201301
+</address>
+
+<p>Your tax-deductible donation is greatly appreciated!</p>
+
+<p><strong>Donation Total:</strong> ₹100.00</p>
+
+</div>
       <div class="form-group">
-        <button type="button" onclick="submitForm()">Submit</button>
+        <button class="donate_btn" type="button" onclick="submitForm()">Submit</button>
       </div>
     </form>
+
   </div>
-
-  <script>
-    function openPopup() {
-    document.getElementById('popup').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
-  }
-
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-  }
-
-  function submitForm() {
-    // Add your form submission logic here
-    alert('Form submitted successfully!');
-    closePopup();
-  }
-  </script>
 </body>
 </html>

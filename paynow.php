@@ -43,6 +43,28 @@
     return $output;
 }
 
-
  add_shortcode('my-sc', 'my_sc_fun');
+
+ function my_custom_scripts(){
+    $path = plugins_url('src/script/donate.js',__FILE__);
+    $dep = array('jquery');
+    $ver = filemtime(plugin_dir_path(__FILE__).'src/script/donate.js');
+    wp_enqueue_script('my-custom-js', $path, $dep, $ver, true);
+
+ }
+
+ add_action('wp_enqueue_scripts','my_custom_scripts');
+
+ function my_custom_styles(){
+
+    $path = plugins_url('src/style/donate.css',__FILE__);
+    $ver = filemtime(plugin_dir_path(__FILE__).'src/style/donate.css');
+    wp_enqueue_style('my-custom-style', $path, '', $ver, '');
+
+    // if(is_page('home')){
+    //     wp_enqueue_script('my-custom-js', $path_js, $dep, $ver, true);
+    // }
+ }
+
+ add_action('wp_enqueue_scripts','my_custom_styles');
  

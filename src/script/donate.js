@@ -13,3 +13,14 @@ function openPopup() {
     alert('Form submitted successfully!');
     closePopup();
   }
+
+  var currentPlaceholder = "";
+
+  function clearPlaceholder(element) {
+      currentPlaceholder = element.placeholder;
+      element.placeholder = '';
+  }
+
+  function restorePlaceholder(element) {
+      element.placeholder = currentPlaceholder;
+  }
