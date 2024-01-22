@@ -12,16 +12,17 @@
     die();
  }
 
+
  function my_plugin_activation() {
     global $wpdb, $table_prefix;
     $wp_donation = $table_prefix . 'donation';
 
     $q = "CREATE TABLE IF NOT EXISTS `$wp_donation` (
         `id` INT(50) NOT NULL AUTO_INCREMENT,
-        `Full Name` VARCHAR(100) NOT NULL,
-        `Email Address` VARCHAR(100) NOT NULL,
-        `Contact no` TEXT NOT NULL,
-        `PAN Number` TEXT NOT NULL,
+        `full_name` VARCHAR(100) NOT NULL,
+        `email` VARCHAR(100) NOT NULL,
+        `contact` TEXT NOT NULL,
+        `PAN` TEXT NOT NULL,
         `Status` DOUBLE NOT NULL,
         `Date` DATE NOT NULL,
         PRIMARY KEY (`id`)
@@ -31,10 +32,10 @@
     // Insert dummy data if needed
     
     $data = array(
-        'Full Name' => 'Akshay',
-        'Email Address' => 'akshay@gmai.com',
-        'contact no' => '9349413345',
-        'PAN Number' => 'FGEOP2398K',
+        'full_name' => 'Akshay',
+        'email' => 'akshay@gmai.com',
+        'contact' => '9349413345',
+        'PAN' => 'FGEOP2398K',
         'Status' => 1,
         'Date' => current_time('mysql')
     );
@@ -43,7 +44,7 @@
 
 }
 
-
+ //action function
  register_activation_hook(__FILE__, 'my_plugin_activation');
 
  function my_plugin_deactivation(){
@@ -51,7 +52,8 @@
     global $wpdb, $table_prefix;
     $wp_donation = $table_prefix.'donation';
 
-    $q = "TRUNCATE `$wp_donation`";
+    // $q = "TRUNCATE `$wp_donation`";
+    $q = "DROP TABLE `$wp_donation`;";
     $wpdb->query($q);
 
  }
@@ -59,6 +61,7 @@
  register_deactivation_hook(__FILE__, 'my_plugin_deactivation');
 
  function my_sc_fun() {
+
     ob_start();
 
     $plugin_dir = plugin_dir_path(__FILE__);
@@ -75,6 +78,8 @@
 
     $output = ob_get_clean();
     return $output;
+
+    // include "src/template/donate.php";
 }
 
  add_shortcode('my-sc', 'my_sc_fun');
@@ -101,4 +106,35 @@
  }
 
  add_action('wp_enqueue_scripts','my_custom_styles');
+
+
+// featching data from database
+ function show_donation_data(){
+    
+    global $wpdb, $table_prefix;
+    $wp_donation = $table_prefix.'donation';
+
+    $q = "SELECT * FROM `$wp_donation`";
+    $results = $wpdb->get_results($q);
+
+    $print_r($results);
+
+ }
+
+ function my_plugin_page_func(){
+    include "src/template/admin.donation.php";
+ }
+
+ function my_plugin_subpage_func(){
+    include "src/template/admin.donor.php";
+ }
+
+ //wp-menu creation
+ function my_plugin_menu(){
+    add_menu_page('Donation', 'Donation', 'manage_options', 'my-plugin-page', 'my_plugin_page_func','',6 );
+
+    add_submenu_page('my-plugin-page', 'Donor', 'Donor', 'manage_options', 'my-plugin-subpage', 'my_plugin_subpage_func');
+ }
+
+ add_action('admin_menu','my_plugin_menu');
  
