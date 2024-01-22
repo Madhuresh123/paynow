@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../style/donate.css">
-  <title>Donate Now</title>
+<?php
+ob_start()
+?>
 
-</head>
-<body>
+  <div class="container">
 
   <!-- Donate Now Button -->
   <button class="donate_btn" onclick="openPopup()">Donate Now</button>
@@ -21,23 +16,29 @@
     <h2>Personal Info</h2>
     <form>
       
+    
+    <div class="first-info">
       <div class="form-group">
         <label for="name">Full Name<span class="required-symbol">*</span></label><br>
         <input class="donor-input" type="text" id="name" name="name" placeholder="Full Name" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
       </div>
       <div class="form-group">
-        <label for="pan">PAN Number<span class="required-symbol">*</span></label><br>
-        <input  class="donor-input" type="text" id="pan" name="pan"  placeholder="PAN Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)"  required>
-      </div>
-      <div class="form-group">
         <label for="email">Email Address<span class="required-symbol">*</span></label><br>
         <input  class="donor-input" type="email" id="email" name="email" placeholder="Email Address" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)"  required>
       </div>
+    </div>
+
+    <div class="first-info">
+
       <div class="form-group">
         <label for="contact">Contact Number<span class="required-symbol">*</span></label><br>
         <input class="donor-input"  type="tel" id="contact" name="contact"  placeholder="Contact Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
       </div>
-
+      <div class="form-group">
+        <label for="pan">PAN Number</label><br>
+        <input  class="donor-input" type="text" id="pan" name="pan"  placeholder="PAN Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+      </div>
+</div>
       <div>
       <p>To make an offline donation toward this cause, follow these steps:</p>
 
@@ -66,5 +67,8 @@
     </form>
 
   </div>
-</body>
-</html>
+</div>
+  <?php
+ob_end_flush();
+?>
+

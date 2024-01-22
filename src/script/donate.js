@@ -1,6 +1,8 @@
 function openPopup() {
     document.getElementById('popup').style.display = 'block';
     document.getElementById('overlay').style.display = 'block';
+    document.body.style.overflowY = "hidden";
+
   }
 
   function closePopup() {
