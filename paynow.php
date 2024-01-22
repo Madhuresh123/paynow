@@ -12,13 +12,47 @@
     die();
  }
 
- function my_plugin_activation(){
+ function my_plugin_activation() {
+    global $wpdb, $table_prefix;
+    $wp_donation = $table_prefix . 'donation';
 
- }
+    $q = "CREATE TABLE IF NOT EXISTS `$wp_donation` (
+        `id` INT(50) NOT NULL AUTO_INCREMENT,
+        `Full Name` VARCHAR(100) NOT NULL,
+        `Email Address` VARCHAR(100) NOT NULL,
+        `Contact no` TEXT NOT NULL,
+        `PAN Number` TEXT NOT NULL,
+        `Status` DOUBLE NOT NULL,
+        `Date` DATE NOT NULL,
+        PRIMARY KEY (`id`)
+    ) ENGINE = InnoDB;";
+    $wpdb->query($q);
+
+    // Insert dummy data if needed
+    
+    $data = array(
+        'Full Name' => 'Akshay',
+        'Email Address' => 'akshay@gmai.com',
+        'contact no' => '9349413345',
+        'PAN Number' => 'FGEOP2398K',
+        'Status' => 1,
+        'Date' => current_time('mysql')
+    );
+
+    $wpdb->insert($wp_donation,$data);
+
+}
+
 
  register_activation_hook(__FILE__, 'my_plugin_activation');
 
  function my_plugin_deactivation(){
+
+    global $wpdb, $table_prefix;
+    $wp_donation = $table_prefix.'donation';
+
+    $q = "TRUNCATE `$wp_donation`";
+    $wpdb->query($q);
 
  }
 

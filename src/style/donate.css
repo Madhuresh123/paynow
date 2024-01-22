@@ -49,6 +49,10 @@ cursor: pointer;
   font-weight: bold;
 }
 
+.donate_btn:hover{
+  background-color: rgb(121, 94, 148);
+}
+
 .donor-input{
   width: 23rem;
   height: 3rem;
@@ -73,4 +77,8 @@ cursor: pointer;
 .first-info{
   display: flex;
   margin-bottom: 1rem;
+}
+
+.popup > h2{
+  font-weight: bolder;
 }
