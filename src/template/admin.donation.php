@@ -22,14 +22,17 @@ ob_start()
     <th><strong>Date</strong></th>
     <th><strong>Action</strong></th>
   </tr>
-    <?php foreach($results as $row): ?>
+    <?php 
+    $reversed_results = array_reverse($results);
+
+    foreach($reversed_results as $row): ?>
         <tr>
       <td><?php echo $row->id; ?></td>
       <td><?php echo $row->full_name; ?></td>
       <td><?php echo $row->email; ?></td>
       <td><?php echo $row->contact; ?></td>
       <td><?php echo $row->PAN; ?></td>
-      <td><?php echo $row->Status; ?></td>
+      <td><?php echo ($row->Status == 1) ? "Donated" : "Pending"; ?></td>
       <td><?php echo $row->Date; ?></td>
       <td>
         <!-- Add your edit, copy, delete links/buttons here -->

@@ -1,5 +1,46 @@
 <?php
-ob_start()
+ob_start();
+
+    if(isset($_POST['register'])){
+      global $wpdb, $table_prefix;
+
+      $full_name = $wpdb->escape($_POST['full_name']);
+      $email = $wpdb->escape($_POST['email']);
+      $contact = $wpdb->escape($_POST['contact']);
+      $pan = $wpdb->escape($_POST['pan']);
+      
+      $wp_donation = $table_prefix . 'donation';
+      
+    // Prepare user data
+    $user_data = array(
+      'full_name' => $full_name,
+        'email' => $email ,
+        'contact' => $contact ,
+        'PAN' => $pan,
+        'Status' => 1,
+        'Date' => current_time('mysql')
+  );
+
+    // Insert user data into the database
+    $wpdb->insert($wp_donation, $user_data);
+
+    if ($wpdb->insert_id) {
+ 
+        wp_redirect('success-page-url');
+        exit;
+
+        // echo "success";
+    } else {
+        // Insert failed
+        // Handle error, e.g., display an error message
+        echo 'Error inserting user data into the database.';
+    }
+
+
+    }
+
+
+
 ?>
 
   <div class="container">
@@ -14,13 +55,14 @@ ob_start()
   <div class="popup" id="popup">
     <span class="close-btn" onclick="closePopup()">X</span>
     <h2>Personal Info</h2>
-    <form>
+
+    <form action="<?php echo get_the_permalink(); ?>" method="post">
       
     
     <div class="first-info">
       <div class="form-group">
         <label for="name">Full Name<span class="required-symbol">*</span></label><br>
-        <input class="donor-input" type="text" id="name" name="name" placeholder="Full Name" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
+        <input class="donor-input" type="text" id="name" name="full_name" placeholder="Full Name" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
       </div>
       <div class="form-group">
         <label for="email">Email Address<span class="required-symbol">*</span></label><br>
@@ -62,7 +104,7 @@ ob_start()
 
 </div>
       <div class="form-group">
-        <button class="donate_btn" type="button" onclick="submitForm()">Submit</button>
+        <input type="submit" class="donate_btn" name="register" value="Submit">
       </div>
     </form>
 
