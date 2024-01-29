@@ -42,6 +42,7 @@ include "validation.donate.php";
         <input  class="donor-input" type="text" id="pan" name="pan"  placeholder="PAN Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
       </div>
 </div>
+
 <div class="form-group">
         <label for="Amount">Amount<span class="required-symbol">*</span></label><br>
         <input  class="donor-input" type="text" id="Amount" name="amount"  placeholder="₹0"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>

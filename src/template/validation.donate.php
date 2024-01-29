@@ -17,7 +17,7 @@ if(isset($_POST['register'])){
       'contact' => $contact ,
       'PAN' => $pan,
       'amount' => $amount,
-      'status' => 0,
+      'status' => 1,
       'Date' => current_time('mysql')
 );
 
