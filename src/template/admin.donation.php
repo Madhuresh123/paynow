@@ -33,9 +33,9 @@ ob_start()
       <td><?php echo $row->email; ?></td>
       <td><?php echo $row->contact; ?></td>
       <td><?php echo $row->PAN; ?></td>
-      <td>100</td>
-      <td><?php echo ($row->Status == 1) ? "Donated" : "Pending"; ?></td>
-      <td><?php echo $row->Date; ?></td>
+      <td><?php echo $row->amount; ?></td>
+      <td><?php echo ($row->status == 1) ? "Donated" : "Pending"; ?></td>
+      <td><?php echo $row->date; ?></td>
       <td>
         <!-- Add your edit, copy, delete links/buttons here -->
         <!-- Example: -->

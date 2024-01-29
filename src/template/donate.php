@@ -1,43 +1,6 @@
 <?php
 ob_start();
-
-    if(isset($_POST['register'])){
-      global $wpdb, $table_prefix;
-
-      $full_name = $wpdb->escape($_POST['full_name']);
-      $email = $wpdb->escape($_POST['email']);
-      $contact = $wpdb->escape($_POST['contact']);
-      $pan = $wpdb->escape($_POST['pan']);
-      
-      $wp_donation = $table_prefix . 'donation';
-      
-    // Prepare user data
-    $user_data = array(
-      'full_name' => $full_name,
-        'email' => $email ,
-        'contact' => $contact ,
-        'PAN' => $pan,
-        'Status' => 1,
-        'Date' => current_time('mysql')
-  );
-
-    // Insert user data into the database
-    $wpdb->insert($wp_donation, $user_data);
-
-    if ($wpdb->insert_id) {
- 
-        wp_redirect('success-page-url');
-        exit;
-
-        // echo "success";
-    } else {
-        // Insert failed
-        // Handle error, e.g., display an error message
-        echo 'Error inserting user data into the database.';
-    }
-
-
-    }
+include "validation.donate.php";
 ?>
 
   <div class="container">
@@ -104,7 +67,7 @@ ob_start();
 
 <p>Your tax-deductible donation is greatly appreciated!</p>
 
-<p><strong>Donation Total:</strong> ₹100.00</p>
+<p><strong>Donation Total:</strong><span id="donationTotal"> ₹00.00</span></p>
 
 </div>
       <div class="form-group">

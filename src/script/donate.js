@@ -30,6 +30,18 @@ function openPopup() {
       element.placeholder = currentPlaceholder;
   }
 
+        // Function to format number in Indian numbering system (1,00,000 format)
+        function formatIndianNumber(amount) {
+          return amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      }
+  
+      // Update donation total when input changes
+      document.getElementById('Amount').addEventListener('input', function() {
+          var amount = parseFloat(this.value.replace('₹', '')) || 0; // Remove '₹' symbol and convert to number
+          var formattedAmount = formatIndianNumber(amount.toFixed(2)); // Format amount in Indian numbering system
+          document.getElementById('donationTotal').innerText = ' ₹' + formattedAmount; // Update total with formatted amount
+      });
+
   jQuery.validator.addMethod("noSpecialChars", function(value, element) {
     return this.optional(element) || /^[a-zA-Z\s]*$/.test(value); // Allows only letters and spaces
   });
@@ -78,7 +90,7 @@ function openPopup() {
           validAmount:"Please enter a valid amount less than 1 lakh"
         }
       }
-    })
+    });
 
 
 
