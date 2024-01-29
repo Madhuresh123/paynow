@@ -72,6 +72,7 @@ cursor: pointer;
   pointer-events: none;
   transition: opacity 0.3s ease-in-out;
   opacity: 1;
+  color: black;
 }
 
 .first-info{
@@ -81,4 +82,8 @@ cursor: pointer;
 
 .popup > h2{
   font-weight: bolder;
+}
+
+.error{
+  color: red;
 }

@@ -18,6 +18,7 @@ ob_start()
     <th><strong>Email</strong></th>
     <th><strong>Contact no.</strong></th>
     <th><strong>PAN Number</strong></th>
+    <th><strong>Amount</strong></th>
     <th><strong>Status</strong></th>
     <th><strong>Date</strong></th>
     <th><strong>Action</strong></th>
@@ -32,6 +33,7 @@ ob_start()
       <td><?php echo $row->email; ?></td>
       <td><?php echo $row->contact; ?></td>
       <td><?php echo $row->PAN; ?></td>
+      <td>100</td>
       <td><?php echo ($row->Status == 1) ? "Donated" : "Pending"; ?></td>
       <td><?php echo $row->Date; ?></td>
       <td>

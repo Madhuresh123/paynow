@@ -38,9 +38,6 @@ ob_start();
 
 
     }
-
-
-
 ?>
 
   <div class="container">
@@ -56,13 +53,14 @@ ob_start();
     <span class="close-btn" onclick="closePopup()">X</span>
     <h2>Personal Info</h2>
 
-    <form action="<?php echo get_the_permalink(); ?>" method="post">
+    <form action="" method="post" id="donation-form">
       
     
     <div class="first-info">
       <div class="form-group">
         <label for="name">Full Name<span class="required-symbol">*</span></label><br>
         <input class="donor-input" type="text" id="name" name="full_name" placeholder="Full Name" onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
+        <label id="full_name-error" class="error" for="name"></label>
       </div>
       <div class="form-group">
         <label for="email">Email Address<span class="required-symbol">*</span></label><br>
@@ -81,7 +79,13 @@ ob_start();
         <input  class="donor-input" type="text" id="pan" name="pan"  placeholder="PAN Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
       </div>
 </div>
-      <div>
+<div class="form-group">
+        <label for="Amount">Amount<span class="required-symbol">*</span></label><br>
+        <input  class="donor-input" type="text" id="Amount" name="amount"  placeholder="₹0"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
+        <label id="amount-error" class="error" for="Amount"></label>
+    </div>
+
+<div>
       <p>To make an offline donation toward this cause, follow these steps:</p>
 
 <ol>
@@ -110,7 +114,7 @@ ob_start();
 
   </div>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <?php
 ob_end_flush();
 ?>
-
