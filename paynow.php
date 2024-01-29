@@ -85,6 +85,32 @@ function my_plugin_activation() {
 
  add_shortcode('donation_btn', 'donation_btn_fun');
 
+
+ function donation_receipt_fun(){
+   
+   ob_start();
+
+   $plugin_dir = plugin_dir_path(__FILE__);
+   $template_path = $plugin_dir . 'src/template/donate.receipt.php';
+
+   // Debugging: Print the file path
+   //echo 'Template Path: ' . $template_path . '<br>';
+
+   if (file_exists($template_path)) {
+       include $template_path;
+   } else {
+       echo 'Error: Template file not found.';
+   }
+
+   $output = ob_get_clean();
+   return $output;
+   
+ }
+
+
+ add_shortcode('donation_receipt', 'donation_receipt_fun');
+
+
  function my_custom_scripts(){
     $path = plugins_url('src/script/donate.js',__FILE__);
     $dep = array('jquery');

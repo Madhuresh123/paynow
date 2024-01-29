@@ -12,7 +12,7 @@ if(isset($_POST['register'])){
     
   // Prepare user data
   $user_data = array(
-    'full_name' => $full_name,
+      'full_name' => $full_name,
       'email' => $email ,
       'contact' => $contact ,
       'PAN' => $pan,
@@ -26,7 +26,7 @@ if(isset($_POST['register'])){
 
   if ($wpdb->insert_id) {
 
-      wp_redirect('success-page-url');
+      wp_redirect('http://localhost/PAY/donation-receipt');
       exit;
 
       // echo "success";
