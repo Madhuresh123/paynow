@@ -26,13 +26,11 @@ if(isset($_POST['register'])){
 
   if ($wpdb->insert_id) {
 
-      wp_redirect('http://localhost/PAY/donation-receipt');
+      echo '<script>window.location.href = "' . esc_url(site_url('/donation-receipt')) . '";</script>';
       exit;
 
-      // echo "success";
   } else {
-      // Insert failed
-      // Handle error, e.g., display an error message
+     
       echo 'Error inserting user data into the database.';
   }
 

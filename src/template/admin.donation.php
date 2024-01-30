@@ -85,11 +85,13 @@ cursor: pointer;
       <td><?php echo $row->contact; ?></td>
       <td><?php echo $row->PAN; ?></td>
       <td><?php echo $row->amount; ?></td>
-      <td><?php echo ($row->status == 1) ? "Donated" : "Pending"; ?></td>
+      <td><?php echo ($row->status == 1) ? "Completed" : "Pending"; ?></td>
       <td><?php echo $row->date; ?></td>
       <td>
-      
-        <div class="container">
+      <a href="admin.php?page=donation-edit&id=<?php echo $row->id; ?>">Edit</a>
+      <a href="admin.php?page=donation-delete&id=<?php echo $row->id; ?>">Delete</a>
+
+        <!-- <div class="container">
         <button class="action_btn" onclick="openPopup()">Edit</button>
         <button class="action_btn" style="background-color: red;" onclick="openPopup()">Delete</button>
         <div class="overlay" id="overlay"></div>
@@ -101,7 +103,7 @@ cursor: pointer;
         <button class="action_btn"  onclick="closePopup()">N0</button>
         <button class="action_btn" style="background-color: red;" data-id="<?php echo $row->id; ?>" onclick="deleteData(this.getAttribute('data-id'))">Yes</button>
         </div>
-        </div>
+        </div> -->
 
       </td>
     </tr>
@@ -126,18 +128,19 @@ function openPopup() {
 
   function deleteData(idToDelete) {
     
-    var data = {
-        action: 'delete_data_action',
-        id: idToDelete
-    };
+    alert(idToDelete);
+    // var data = {
+    //     action: 'delete_data_action',
+    //     id: idToDelete
+    // };
 
-    // Ajax Request
-    jQuery.post(ajaxurl, data, function(response) {
-        // Handle response
-        alert(response);
-        // Reload the page or perform any other action as needed
-        location.reload();
-    });
+    // // Ajax Request
+    // jQuery.post(ajaxurl, data, function(response) {
+    //     // Handle response
+    //     alert(response);
+    //     // Reload the page or perform any other action as needed
+    //     location.reload();
+    // });
 }
 
 </script>

@@ -139,11 +139,25 @@ function my_plugin_activation() {
     include "src/template/admin.donor.php";
  }
 
+ function my_plugin_donation_edit(){
+    include "src/template/admin.donation.edit.php";
+ }
+
+ function my_plugin_donation_delete(){
+    include "src/template/admin.donation.delete.php";
+ }
+
  //wp-menu creation
  function my_plugin_menu(){
     add_menu_page('Donation', 'Donation', 'manage_options', 'my-plugin-page', 'my_plugin_page_func','',6 );
 
     add_submenu_page('my-plugin-page', 'Donor', 'Donor', 'manage_options', 'my-plugin-subpage', 'my_plugin_subpage_func');
+
+    add_submenu_page('null', 'update-donation', 'Update donation', 'manage_options', 'donation-edit', 'my_plugin_donation_edit');
+
+    add_submenu_page('null', 'delete-donation', 'Delete donation', 'manage_options', 'donation-delete', 'my_plugin_donation_delete');
+
+
  }
 
  add_action('admin_menu','my_plugin_menu');
