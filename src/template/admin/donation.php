@@ -79,7 +79,7 @@ cursor: pointer;
 
     foreach($reversed_results as $row): ?>
         <tr>
-      <td><?php echo $row->id; ?></td>
+      <td><?php echo "RGTWF0" . $row->id; ?></td>
       <td><?php echo $row->full_name; ?></td>
       <td><?php echo $row->email; ?></td>
       <td><?php echo $row->contact; ?></td>

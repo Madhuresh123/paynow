@@ -37,20 +37,17 @@ include "style.php";
   <div class="first-info">
   
   <div class="form-group">
-    <label for="address-line-1">Address line 1</label><br>
-    <input class="donor-input"  type="text" id="address-line-1" name="address-line-1"  placeholder="Address line 1"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
-  </div>
-  <div class="form-group">
-    <label for="address-line-2">Address line 2</label><br>
-    <input  class="donor-input" type="text" id="address-line-2" name="address-line-2"  placeholder="Address line 2"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
-  </div>
-  </div>
-  
-  <div class="form-group">
           <label for="Amount">Amount<span class="required-symbol">*</span></label><br>
           <input  class="donor-input" type="text" id="Amount" name="amount"  placeholder="₹0"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
           <label id="amount-error" class="error" for="Amount"></label>
       </div>
+
+  <div class="form-group">
+    <label for="address-line-1">Address</label><br>
+    <input class="donor-input"  type="text" id="address-line-1" name="address-line-1"  placeholder="Address"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
+  </div>
+
+  </div>
   
   <div class="donation-address">
         <p>To make an offline donation toward this cause, follow these steps:</p>

@@ -5,8 +5,8 @@
         padding: 0;
     }
     .donate-box{
-        width: 69rem;
-        height: 63rem;
+        width: 60rem;
+        height: 60rem;
         border: 1px solid lightgrey;
         padding: 1rem 3rem;
         margin-top: -8rem;  
@@ -36,7 +36,7 @@
     }
 
     .donor-input {
-    width: 30rem;
+    width: 25rem;
     height: 3rem;
     border-radius: 5px;
     border: 1px solid lightgrey;
