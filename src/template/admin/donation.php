@@ -58,11 +58,47 @@ cursor: pointer;
 .donate_btn:hover{
   background-color: rgb(121, 94, 148);
 }
+
+.wp-list-table{
+  font-size:20px;
+}
+
+.status-style{
+  width: 5rem;
+  background-color: #E4FFE5;
+  text-align:center;
+  border-radius:5px;
+  height: 2rem;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  color:black;
+  font-weight:500;
+}
+
+.completed {
+    background-color: #E4FFE5;
+}
+
+.pending {
+    background-color: #FBECB7;
+}
+
+.row-cell{
+  width:5rem;
+  height:2rem;
+  display:flex;
+  justify-content:left;
+  align-items:center;
+  color:black;
+  font-weight:400;
+}
+
 </style>
 
 <div class="wrap">
-    <h1>Donations</h1>
-<table class="wp-list-table widefat fixed striped table-view-list posts">
+    <h1>Donation History</h1>
+<table class="wp-list-table widefat fixed striped table-view-list posts" style="margin-top:1rem;">
   <tr>
   <th><strong>ID</strong></th>
     <th><strong>Full Name</strong></th>
@@ -78,20 +114,24 @@ cursor: pointer;
     $reversed_results = array_reverse($results);
 
     foreach($reversed_results as $row): ?>
-        <tr>
-      <td><?php echo "RGTWF0" . $row->id; ?></td>
-      <td><?php echo $row->full_name; ?></td>
-      <td><?php echo $row->email; ?></td>
-      <td><?php echo $row->contact; ?></td>
-      <td><?php echo $row->PAN; ?></td>
-      <td><?php echo $row->amount; ?></td>
-      <td><?php echo ($row->status == 1) ? "Completed" : "Pending"; ?></td>
-      <td><?php echo $row->date; ?></td>
+        <tr class="table-row">
+      <td><div class="row-cell"><?php echo "RGTWF0" . $row->id; ?></div></td>
+      <td><div class="row-cell"><?php echo $row->full_name; ?></div></td>
+      <td><div class="row-cell"><?php echo $row->email; ?></div></td>
+      <td><div class="row-cell"><?php echo $row->contact; ?></div></td>
+      <td><div class="row-cell"><?php echo $row->PAN; ?></div></td>
+      <td><div class="row-cell"><?php echo "₹ ". $row->amount; ?></div></td>
       <td>
+        <div class="status-style <?php echo ($row->status == 1) ? 'completed' : 'pending'; ?>">
+        <?php echo ($row->status == 1) ? "Completed" : "Pending"; ?>
+        </div>
+      </td>
+      <td><div class="row-cell"><?php echo $row->date; ?></div></td>
+      <td><div class="row-cell">
 
-      <a href="admin.php?page=donation-edit&id=<?php echo $row->id; ?>">Edit</a>
+      <a href="admin.php?page=donation-edit&id=<?php echo $row->id; ?>" style="margin-right:1rem;">Edit</a>
       <a href="admin.php?page=donation-delete&id=<?php echo $row->id; ?>">Delete</a>
-
+</div>
       </td>
     </tr>
   <?php endforeach; ?>

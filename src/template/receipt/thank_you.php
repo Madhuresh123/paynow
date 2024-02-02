@@ -339,7 +339,7 @@ if ($results) {
         <div class="text-center mb-4" style="margin-top: -19%;">
           <!-- <div class="row don_det">
             <div class="col-md-6 d-flex align-items-center">
-              PAYMENT STATUS
+              PAYMENT STATUS  
             </div>
             <div class="col-md-6 d-flex align-items-center">
               Complete
