@@ -41,10 +41,6 @@ if ($results) {
 
     $logo_path = 'https://i0.wp.com/rgtfoundation.org/wp-content/uploads/2023/08/rgt-ngo-logo.png?fit=2033%2C487&ssl=1';
     $pdf->Image($logo_path, $pdf->GetX(), $pdf->GetY(), 50);
-    // Output content to PDF
-    // Desired width and height
-    // $newWidth = 50;
-    // $newHeight = 50;
 
     // // Add the logo to the PDF
     // $pdf->Image($logo_path, $pdf->GetX(), $pdf->GetY(), $newWidth, $newHeight);
@@ -252,19 +248,6 @@ if ($results) {
     .don_det {
       margin-left: 63px;
     }
-
-    /* .main_container {
-      overflow-y: auto;   
-      max-height: 500px;    
-    } */
-
-    /* .form_main {
-        width: 50%;
-    }
-
-    .error {
-        font-size: 0.7rem;
-    } */
   </style>
 
   <body>

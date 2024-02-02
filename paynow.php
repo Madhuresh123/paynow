@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Pay Now
  * Description: The most robust, flexible, and intuitive way to accept donations on WordPress.
- * Version: 1.0
+ * Version: 1.2
  * Author: Madhuresh
  * 
  */
@@ -86,6 +86,33 @@ function my_plugin_activation() {
  add_shortcode('donation_btn', 'donation_btn_fun');
 
 
+ //donation form
+
+ function donation_form_fun(){
+    
+    ob_start();
+
+    $plugin_dir = plugin_dir_path(__FILE__);
+    $template_path = $plugin_dir . 'src/template/donate.form.php';
+ 
+    // Debugging: Print the file path
+    //echo 'Template Path: ' . $template_path . '<br>';
+ 
+    if (file_exists($template_path)) {
+        include $template_path;
+    } else {
+        echo 'Error: Template file not found.';
+    }
+ 
+    $output = ob_get_clean();
+    return $output;
+   
+ }
+
+ add_shortcode('donation_form', 'donation_form_fun');
+
+
+
  function donation_receipt_fun(){
    
    ob_start();
@@ -161,36 +188,6 @@ function my_plugin_activation() {
  }
 
  add_action('admin_menu','my_plugin_menu');
-
-
- //delete button 
-
- // Ajax handler for deleting data
-add_action('wp_ajax_delete_data_action', 'delete_data_function');
-
-function delete_data_function() {
-   global $wpdb, $table_prefix;
-   $wp_donation = $table_prefix . 'donation';
-
-    // Get ID from Ajax request
-    $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
-
-    // Perform deletion
-    if ($id > 0) {
-        // Your deletion logic
-        $wpdb->delete($wp_donation, array('id' => $id));
-        
-        // Return success message
-        wp_send_json_success('Data deleted successfully.');
-    } else {
-        // Return error message
-        wp_send_json_error('Invalid ID.');
-    }
-
-    wp_die(); // Always include wp_die() at the end of your Ajax callback function.
-}
-
-
 
 
  

@@ -41,7 +41,7 @@ cursor: pointer;
 .donate_btn{
   width: 8rem;
   height: 3rem;
-  background-color: rebeccapurple;
+  background-color: #78B598;
   color: white;
   border: none;
   border-radius: 5px;
@@ -50,7 +50,7 @@ cursor: pointer;
 }
 
 .donate_btn:hover{
-  background-color: rgb(121, 94, 148);
+  background-color: #709583;
 }
 
 .donor-input{

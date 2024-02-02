@@ -80,7 +80,7 @@ function openPopup() {
           noSpecialChars:"Please enter only letters and spaces"
         },
         contact:{
-          onlyTenDigits:"Please enter only 10 digits",
+          onlyTenDigits:"Please enter valid phone number",
         },
         pan:{
           validPAN:"Please enter a valid PAN number"

@@ -1,0 +1,3 @@
+To create donation button-> add shortcode-> [donation_btn]
+To create donation form-> add shortcode-> [donation_form] in permalink (donation-form)
+To create donation form-> add shortcode-> [donation_receipt] in permalink (donation-receipt)

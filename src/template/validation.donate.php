@@ -33,7 +33,5 @@ if(isset($_POST['register'])){
      
       echo 'Error inserting user data into the database.';
   }
-
-
   }
     ?>

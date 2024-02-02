@@ -88,63 +88,15 @@ cursor: pointer;
       <td><?php echo ($row->status == 1) ? "Completed" : "Pending"; ?></td>
       <td><?php echo $row->date; ?></td>
       <td>
+
       <a href="admin.php?page=donation-edit&id=<?php echo $row->id; ?>">Edit</a>
       <a href="admin.php?page=donation-delete&id=<?php echo $row->id; ?>">Delete</a>
-
-        <!-- <div class="container">
-        <button class="action_btn" onclick="openPopup()">Edit</button>
-        <button class="action_btn" style="background-color: red;" onclick="openPopup()">Delete</button>
-        <div class="overlay" id="overlay"></div>
-
-        <div class="action_popup" id="popup">
-        <span class="close-btn" onclick="closePopup()"><strong>X</strong></span>
-
-        <h1>Are you sure you want to delete the data?</h1>
-        <button class="action_btn"  onclick="closePopup()">N0</button>
-        <button class="action_btn" style="background-color: red;" data-id="<?php echo $row->id; ?>" onclick="deleteData(this.getAttribute('data-id'))">Yes</button>
-        </div>
-        </div> -->
 
       </td>
     </tr>
   <?php endforeach; ?>
 </table>
     </div>
-
-    <!-- JavaScript: Confirmation Popup and Ajax Request -->
-<script>
-function openPopup() {
-    document.getElementById('popup').style.display = 'block';
-    document.getElementById('overlay').style.display = 'block';
-    document.body.style.overflowY = "hidden";
-
-  }
-
-  function closePopup() {
-    document.getElementById('popup').style.display = 'none';
-    document.getElementById('overlay').style.display = 'none';
-    document.body.style.overflowY = "scroll";
-  }
-
-  function deleteData(idToDelete) {
-    
-    alert(idToDelete);
-    // var data = {
-    //     action: 'delete_data_action',
-    //     id: idToDelete
-    // };
-
-    // // Ajax Request
-    // jQuery.post(ajaxurl, data, function(response) {
-    //     // Handle response
-    //     alert(response);
-    //     // Reload the page or perform any other action as needed
-    //     location.reload();
-    // });
-}
-
-</script>
-
 <?php
 echo ob_get_clean();
 

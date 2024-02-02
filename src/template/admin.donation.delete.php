@@ -21,7 +21,6 @@ if(isset($_POST['delete'])) {
 }
 ?>
 
-
 <style>
 .delete-opt{
     width: 6rem;
