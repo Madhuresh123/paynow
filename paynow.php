@@ -7,134 +7,48 @@
  * 
  */
 
+ 
  if(!defined('ABSPATH')){
     header("Location: /");
     die();
  }
 
-function my_plugin_activation() {
-    global $wpdb, $table_prefix;
-    $wp_donation = $table_prefix . 'donation';
-
-    $q = "CREATE TABLE IF NOT EXISTS `$wp_donation` (
-        `id` INT(50) NOT NULL AUTO_INCREMENT , 
-      `full_name` VARCHAR(100) NOT NULL , 
-      `email` VARCHAR(100) NOT NULL , 
-      `contact` TEXT NOT NULL , 
-      `PAN` TEXT NOT NULL , 
-      `amount` TEXT NOT NULL , 
-      `status` BOOLEAN NOT NULL , 
-      `date` DATE NOT NULL , 
-      PRIMARY KEY (`id`)
-    ) ENGINE = InnoDB;";
-    $wpdb->query($q);
-
-    // Insert dummy data if needed
-    
-    $data = array(
-        'full_name' => 'Akshay',
-        'email' => 'akshay@gmai.com',
-        'contact' => '9349413345',
-        'PAN' => 'FGEOP2398K',
-        'amount' => '100',
-        'status' => 0,
-        'Date' => current_time('mysql')
-    );
-
-    $wpdb->insert($wp_donation,$data);
-
-}
-
- //action function
+ //activate plugin
+ include "functions/activate.php";
  register_activation_hook(__FILE__, 'my_plugin_activation');
 
- function my_plugin_deactivation(){
-
-    global $wpdb, $table_prefix;
-    $wp_donation = $table_prefix.'donation';
-
-   //  $q = "TRUNCATE `$wp_donation`";
-    $q = "DROP TABLE `$wp_donation`;";
-    $wpdb->query($q);
-
- }
-
+ //deactivate plugin
+include "functions/deactivate.php";
  register_deactivation_hook(__FILE__, 'my_plugin_deactivation');
 
+ //donate button
  function donation_btn_fun() {
-
     ob_start();
-
-    $plugin_dir = plugin_dir_path(__FILE__);
-    $template_path = $plugin_dir . 'src/template/donate.php';
-
-    // Debugging: Print the file path
-    //echo 'Template Path: ' . $template_path . '<br>';
-
-    if (file_exists($template_path)) {
-        include $template_path;
-    } else {
-        echo 'Error: Template file not found.';
-    }
-
+    include(__DIR__ . '/src/template/donate.php');
     $output = ob_get_clean();
     return $output;
-
-    // include "src/template/donate.php";
 }
-
  add_shortcode('donation_btn', 'donation_btn_fun');
 
 
  //donation form
-
  function donation_form_fun(){
-    
     ob_start();
-
-    $plugin_dir = plugin_dir_path(__FILE__);
-    $template_path = $plugin_dir . 'src/template/donate.form.php';
- 
-    // Debugging: Print the file path
-    //echo 'Template Path: ' . $template_path . '<br>';
- 
-    if (file_exists($template_path)) {
-        include $template_path;
-    } else {
-        echo 'Error: Template file not found.';
-    }
- 
+    include(__DIR__ . '/src/template/form/form.php'); 
     $output = ob_get_clean();
-    return $output;
-   
+    return $output;   
  }
-
  add_shortcode('donation_form', 'donation_form_fun');
 
 
-
+//donation receipt
  function donation_receipt_fun(){
    
    ob_start();
-
-   $plugin_dir = plugin_dir_path(__FILE__);
-   $template_path = $plugin_dir . 'src/template/donate.receipt.php';
-
-   // Debugging: Print the file path
-   //echo 'Template Path: ' . $template_path . '<br>';
-
-   if (file_exists($template_path)) {
-       include $template_path;
-   } else {
-       echo 'Error: Template file not found.';
-   }
-
+   include(__DIR__ . '/src/template/donate.receipt.php'); 
    $output = ob_get_clean();
    return $output;
-   
  }
-
-
  add_shortcode('donation_receipt', 'donation_receipt_fun');
 
 
@@ -159,19 +73,19 @@ function my_plugin_activation() {
 
 
  function my_plugin_page_func(){
-    include "src/template/admin.donation.php";
+    include "src/template/admin/donation.php";
  }
 
  function my_plugin_subpage_func(){
-    include "src/template/admin.donor.php";
+    include "src/template/admin/donor.php";
  }
 
  function my_plugin_donation_edit(){
-    include "src/template/admin.donation.edit.php";
+    include "src/template/admin/donation.edit.php";
  }
 
  function my_plugin_donation_delete(){
-    include "src/template/admin.donation.delete.php";
+    include "src/template/admin/donation.delete.php";
  }
 
  //wp-menu creation
