@@ -1,4 +1,5 @@
 <?php
+include "style.php";
 global $wpdb, $table_prefix;
 $wp_donation = $table_prefix . 'donation';
 
@@ -21,14 +22,6 @@ if(isset($_POST['delete'])) {
 }
 ?>
 
-<style>
-.delete-opt{
-    width: 6rem;
-    display: flex;
-    justify-content:space-between;
-}
-</style>
-
 <form action="" method="post">
 
     <label><h3>Are you sure you want to delete this donation info?</h3><label><br>
@@ -38,7 +31,7 @@ if(isset($_POST['delete'])) {
     </div>
 
     <div style="margin-top:1rem;">
-    <button type="submit" name="delete">save</button>
+    <button class="donate_btn" type="submit" name="delete">save</button>
     <input type="hidden" name="id" value="<?php echo $id; ?>">
     </div>
 

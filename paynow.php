@@ -57,10 +57,14 @@ include "functions/deactivate.php";
     $dep = array('jquery');
     $ver = filemtime(plugin_dir_path(__FILE__).'src/script/donate.js');
     wp_enqueue_script('my-custom-js', $path, $dep, $ver, true);
+    //ajax call
+    wp_add_inline_script('my-custom-js', 'var ajaxUrl = "'.admin_url('admin-ajax.php').'";' , 'before');
 
  }
 
  add_action('wp_enqueue_scripts','my_custom_scripts');
+ add_action('admin_enqueue_scripts','my_custom_scripts');
+
 
  function my_custom_styles(){
 
@@ -102,6 +106,13 @@ include "functions/deactivate.php";
  }
 
  add_action('admin_menu','my_plugin_menu');
+
+ // AJAx wp;
+ 
+ include "functions/my_search_func.php";
+ add_action('wp_ajax_my_search_func','my_search_func');
+//  add_action('wp_ajax_nopriv_my_search_func','my_search_func');
+
 
 
  

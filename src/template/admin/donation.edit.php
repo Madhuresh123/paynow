@@ -1,5 +1,5 @@
 <?php
-
+include "style.php";
 global $wpdb, $table_prefix;
 $wp_donation = $table_prefix . 'donation';
 
@@ -42,54 +42,6 @@ if(!empty($id)){
 $q = $wpdb->prepare("SELECT * FROM $wp_donation WHERE id = %d", $id);
 $donation = $wpdb->get_row($q);
     ?>
-
-
-<style>
-
-.form-group {
- margin-bottom: 15px;
-  margin-right: 1rem;
-}
-
-.donate_btn{
-  width: 8rem;
-  height: 3rem;
-  background-color: rebeccapurple;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.donate_btn:hover{
-  background-color: rgb(121, 94, 148);
-}
-
-    .donor-input{
-  width: 23rem;
-  height: 3rem;
-  border-radius: 5px;
-  border: 1px solid lightgrey;
-  outline: none;
-  padding-left: 10px;
-}
-
-.first-info{
-  display: flex;
-  margin-bottom: 1rem;
-}
-
-.donor-input::placeholder {
-  position: absolute;
-  pointer-events: none;
-  transition: opacity 0.3s ease-in-out;
-  opacity: 1;
-  color: black;
-}
-
-
-</style>
 
 <h1>Update donation Info</h1>
 <form action="" method="post" id="donation-form">
