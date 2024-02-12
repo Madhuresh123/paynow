@@ -1,10 +1,86 @@
 <?php
 ob_start();
-include "validation.php";
-include "style.php";
+
+include(__DIR__ . '/../form/style.php');
 ?>
 
-<div class=donate-box>
+<style>
+  
+  /* Style for the popup */
+  body{
+    overflow-y:hidden;
+  }
+    .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* background-color: rgba(255, 255, 255, 0.5);  */
+    background-color: rgba(100, 100, 100, 0.7);
+    z-index: 999; /* Ensure it's on top of other content */
+    display:block;
+
+    }
+
+    .popup {
+      width: 35rem;
+      height: 15rem;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000; /* Ensure it's on top of the overlay */
+      display:block;
+      overflow-y:hidden;
+    }
+
+    .container{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-direction: column;
+    }
+
+    .container > h3{
+        font-weight:bold;
+        font-family: Inter;
+        font-weight: 600;
+    }
+
+    .donate_btn{
+        margin-top:1rem;
+        width: 8rem;
+        height:2.5rem;
+        background-color: #78B598;
+        font-size:20px;
+        font-weight:700;
+        font-size:16px;
+    }
+
+  </style>
+
+    <!-- Overlay -->
+<div class="overlay"></div>
+
+<!-- Popup -->
+<div class="popup" id="popup">
+    <div class="container">
+ <h3>Thank you!</h3>
+ <div style="text-align:center; margin-top:-2rem;">
+  <p>Your support means world to us!<br>
+  Our volunteer will call you shortly to guide offline donations.</p>
+</div>
+  <button class="donate_btn">Done</button>
+</div>
+</div>
+
+
+    <div class=donate-box>
     <div class="donation-form-title"><h2>Personal info</h2></div>
 
     <form action="" method="post" id="donation-form">
@@ -29,8 +105,8 @@ include "style.php";
           <input class="donor-input"  type="tel" id="contact" name="contact"  placeholder="Contact Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
         </div>
         <div class="form-group">
-          <label for="pan">PAN Number<span class="required-symbol">*</span></label><br>
-          <input  class="donor-input" type="text" id="pan" name="pan"  placeholder="PAN Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
+          <label for="pan">PAN Number</label><br>
+          <input  class="donor-input" type="text" id="pan" name="pan"  placeholder="PAN Number"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
         </div>
   </div>
   
@@ -43,8 +119,8 @@ include "style.php";
       </div>
 
   <div class="form-group">
-    <label for="address-line-1">Address<span class="required-symbol">*</span></label><br>
-    <input class="donor-input"  type="text" id="address-line-1" name="address-line-1"  placeholder="Address"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)" required>
+    <label for="address-line-1">Address</label><br>
+    <input class="donor-input"  type="text" id="address-line-1" name="address-line-1"  placeholder="Address"  onfocus="clearPlaceholder(this)" onblur="restorePlaceholder(this)">
   </div>
 
   </div>
@@ -103,6 +179,7 @@ include "style.php";
         </div>
       </form>
 </div>
+
 
 <?php
 ob_end_flush();

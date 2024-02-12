@@ -1,5 +1,4 @@
 <?php
-
 if(isset($_POST['register'])){
     global $wpdb, $table_prefix;
 
@@ -18,18 +17,19 @@ if(isset($_POST['register'])){
       'contact' => $contact ,
       'PAN' => $pan,
       'amount' => $amount,
-      'status' => 1,
+      'status' => 0,
       'Date' => current_time('mysql')
 );
 
   // Insert user data into the database
-  $wpdb->insert($wp_donation, $user_data);
+  $isSubmit = $wpdb->insert($wp_donation, $user_data);
+   
 
-  if ($wpdb->insert_id) {
-
-      echo '<script>window.location.href = "' . esc_url(site_url('/donation-receipt')) . '";</script>';
-      exit;
-
+  if ($isSubmit) {
+    // include(__DIR__.'/../receipt/thank_you.php');
+    // exit;
+    echo '<script>window.location.href = "' . esc_url(site_url('/donation-receipt')) . '";</script>';
+    exit;
   } else {
      
       echo 'Error inserting user data into the database.';
@@ -37,3 +37,4 @@ if(isset($_POST['register'])){
   }
     ?>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
